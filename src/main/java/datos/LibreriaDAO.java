@@ -20,6 +20,7 @@ public class LibreriaDAO {
     private static final String SQL_UPDATE_PRECIO = "UPDATE productos SET precio = ? WHERE id = ?;";
     private static final String SQL_UPDATE_STOCK = "UPDATE productos SET stock = ? WHERE id = ?;";
     private static final String SQL_DELETE = "DELETE FROM productos WHERE id = ?;";
+    private static final String SQL_SELECT_BY_ID = "SELECT id, marca, tipo, anio, stock, precio FROM productos WHERE id = ?;";
     private static final String SQL_SELECT_BY_MARCA = "SELECT id, marca, tipo, anio, stock, precio FROM productos WHERE marca = ?;";
     
     
@@ -64,6 +65,51 @@ public class LibreriaDAO {
         }
         
         return productos;
+        
+    }
+    
+     public Productos findById(int id) {
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Productos producto = null;
+//        List<Productos> productos = new ArrayList();
+        
+        try {
+            
+            conn = getConexion();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                
+                int id2 = rs.getInt("id");
+                String marca = rs.getString("marca");
+                String tipo = rs.getString("tipo");
+                int anio = rs.getInt("anio");
+                int stock = rs.getInt("stock");
+                double precio = rs.getDouble("precio");
+                
+                producto = new Productos( id2, marca, tipo, anio, stock, precio);
+                
+//                productos.add(producto);
+                
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                close(rs);
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        
+        return producto;
         
     }
     

@@ -26,18 +26,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="producto" items="${pepe}">
+                                <c:forEach var="producto" items="${pepe}" varStatus="status">
                                     <tr>
-                                        <td  class="text-center">${producto.id}</td>
+<!--                                    <td  class="text-center">${producto.id}</td>-->
+                                        <td>${status.count}</td>
                                         <td>${producto.marca}</td>
                                         <td>${producto.tipo}</td>
                                         <td class="text-center">${producto.anio}</td>
                                         <td class="text-end">${producto.stock}</td>
                                         <td class="text-end"><fmt:formatNumber value="${producto.precio}" type="currency"/></td>
-                                        <!--Completar href cuando esté terminado JSP EDITAR -->
                                         
+                                        <!--Completar href cuando esté terminado JSP EDITAR -->
                                         <td class="text-center">
-                                            <a href="&{pageContext.request.contextPath}/ServletControlador?accion=editar&id=${producto.id}" class="btn btn-secondary">
+                                            <a href="${pageContext.request.contextPath}/ServletControlador?accion=editar&id=${producto.id}" class="btn btn-secondary">
                                                 <i class="fas fa-angle-double-right"></i>
                                                 Editar
                                             </a>
