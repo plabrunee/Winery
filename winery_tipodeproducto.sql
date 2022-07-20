@@ -16,32 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `productos`
+-- Table structure for table `tipodeproducto`
 --
 
-DROP TABLE IF EXISTS `productos`;
+DROP TABLE IF EXISTS `tipodeproducto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `productos` (
+CREATE TABLE `tipodeproducto` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `marca` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
-  `tipo` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
-  `anio` int DEFAULT NULL,
-  `stock` int NOT NULL DEFAULT '0',
-  `precio` double NOT NULL DEFAULT '0',
+  `descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `marca_tipo_anio` (`marca`,`tipo`,`anio`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `descripcion_UNIQUE` (`descripcion`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `productos`
+-- Dumping data for table `tipodeproducto`
 --
 
-LOCK TABLES `productos` WRITE;
-/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Toro','Vino Tinto',2021,11,120.4),(2,'Termidor','Vino Blanco',2022,123,180),(3,'Colón','Vino Tinto Malbec',2018,24,380.85),(4,'Old Smuggler','Whisky',2005,34,1230),(6,'La vinotinto','Vino Blanco',2021,3,105.25),(8,'Güisquito','Whisky',2003,2,2560),(9,'Toro Viejo','Vino Rosado',2022,20,140.5),(10,'La Bodeguita','Espumante',2001,5,350),(11,'El Tonel','Vino Blanco Reserva',2019,10,480),(12,'El Tonel','Vino Tinto Reserva',2020,10,520),(13,'Otro loco más','Vino Tinto Fino',2010,5,850);
-/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+LOCK TABLES `tipodeproducto` WRITE;
+/*!40000 ALTER TABLE `tipodeproducto` DISABLE KEYS */;
+INSERT INTO `tipodeproducto` VALUES (7,'Fernet'),(2,'Vino Blanco'),(4,'Vino Fino Blanco'),(3,'Vino Fino Tinto'),(6,'Vino Reserva Blanco'),(5,'Vino Reserva Tinto'),(1,'Vino Tinto'),(8,'Whisky');
+/*!40000 ALTER TABLE `tipodeproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
